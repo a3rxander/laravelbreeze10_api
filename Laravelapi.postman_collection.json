@@ -14,7 +14,7 @@
 					"script": {
 						"exec": [
 							"pm.sendRequest({\r",
-							"    url: '{{base_url}}/sanctum/csrf-cookie',\r",
+							"    url: 'http://127.0.0.1:8000/sanctum/csrf-cookie',\r",
 							"    method: 'GET'\r",
 							"}, function (error, response, { cookies }) {\r",
 							"    if (!error) {\r",
@@ -32,12 +32,12 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text"
+						"type": "default"
 					},
 					{
 						"key": "X-XSRF-TOKEN",
 						"value": "{{xsrf-token}}",
-						"type": "text"
+						"type": "default"
 					}
 				],
 				"url": {
@@ -81,12 +81,12 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text"
+						"type": "default"
 					},
 					{
 						"key": "X-XSRF-TOKEN",
 						"value": "{{xsrf-token}}",
-						"type": "text"
+						"type": "default"
 					}
 				],
 				"url": {
@@ -102,7 +102,7 @@
 			"response": []
 		},
 		{
-			"name": "Get User",
+			"name": "get User",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -120,16 +120,16 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text"
+						"type": "default"
 					},
 					{
 						"key": "Referer",
 						"value": "{{referer}}",
-						"type": "text"
+						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/api/user",
+					"raw": "http://127.0.0.1:8000/api/user",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -147,7 +147,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Teachers",
+			"name": "get docentes",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -165,12 +165,12 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text"
+						"type": "default"
 					},
 					{
 						"key": "Referer",
 						"value": "{{referer}}",
-						"type": "text"
+						"type": "default"
 					},
 					{
 						"key": "X-XSRF-TOKEN",
@@ -179,7 +179,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/api/teachers",
+					"raw": "http://127.0.0.1:8000/api/teachers",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -197,13 +197,71 @@
 			"response": []
 		},
 		{
-			"name": "Store Teacher",
+			"name": "get docente profile",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							""
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/teachers/20",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store Docente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'http://127.0.0.1:8000/sanctum/csrf-cookie',\r",
+							"    method: 'GET'\r",
+							"}, function (error, response, { cookies }) {\r",
+							"    if (!error) {\r",
+							"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'))\r",
+							"    }\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -215,7 +273,12 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text"
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
 					},
 					{
 						"key": "X-XSRF-TOKEN",
@@ -223,14 +286,131 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{base_url}}/api/teachers",
+					"raw": "http://127.0.0.1:8000/api/teachers?first_name=dsadasdsa&last_name=dsadsadas&email=mymaildsadasdas3ssss2s@example.com&phone=1234567890",
+					"protocol": "http",
 					"host": [
-						"{{base_url}}"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "8000",
 					"path": [
 						"api",
 						"teachers"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "dsadasdsa"
+						},
+						{
+							"key": "last_name",
+							"value": "dsadsadas"
+						},
+						{
+							"key": "email",
+							"value": "mymaildsadasdas3ssss2s@example.com"
+						},
+						{
+							"key": "phone",
+							"value": "1234567890"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Docente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'http://127.0.0.1:8000/sanctum/csrf-cookie',\r",
+							"    method: 'GET'\r",
+							"}, function (error, response, { cookies }) {\r",
+							"    if (!error) {\r",
+							"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'))\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/teachers/1?first_name=dsadasdsa&last_name=dsadsadas&email=mymaildasas@example.com&phone=1234567890",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers",
+						"1"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "dsadasdsa"
+						},
+						{
+							"key": "last_name",
+							"value": "dsadsadas"
+						},
+						{
+							"key": "email",
+							"value": "mymaildasas@example.com"
+						},
+						{
+							"key": "phone",
+							"value": "1234567890"
+						}
 					]
 				}
 			},
@@ -261,12 +441,12 @@
 		{
 			"key": "base_url",
 			"value": "http://127.0.0.1:8000",
-			"type": "text"
+			"type": "default"
 		},
 		{
 			"key": "referer",
 			"value": "127.0.0.1:8000",
-			"type": "text"
+			"type": "default"
 		}
-	}
+	]
 }
