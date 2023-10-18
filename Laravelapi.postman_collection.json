@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c22a1247-d986-41ae-a0e4-1bc2267c0f9b",
+		"_postman_id": "8bdc2ef3-92fc-4d50-acbd-4a4a9f269b20",
 		"name": "Laravelapi",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26806037"
 	},
 	"item": [
 		{
@@ -140,6 +141,276 @@
 					"path": [
 						"api",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get docentes",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/teachers",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get docente profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/teachers/20",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store Docente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'http://127.0.0.1:8000/sanctum/csrf-cookie',\r",
+							"    method: 'GET'\r",
+							"}, function (error, response, { cookies }) {\r",
+							"    if (!error) {\r",
+							"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'))\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/teachers?first_name=dsadasdsa&last_name=dsadsadas&email=mymaildsadasdas3ssss2s@example.com&phone=1234567890",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "dsadasdsa"
+						},
+						{
+							"key": "last_name",
+							"value": "dsadsadas"
+						},
+						{
+							"key": "email",
+							"value": "mymaildsadasdas3ssss2s@example.com"
+						},
+						{
+							"key": "phone",
+							"value": "1234567890"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Docente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'http://127.0.0.1:8000/sanctum/csrf-cookie',\r",
+							"    method: 'GET'\r",
+							"}, function (error, response, { cookies }) {\r",
+							"    if (!error) {\r",
+							"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'))\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "default"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/teachers/1?first_name=dsadasdsa&last_name=dsadsadas&email=mymaildasas@example.com&phone=1234567890",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers",
+						"1"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "dsadasdsa"
+						},
+						{
+							"key": "last_name",
+							"value": "dsadsadas"
+						},
+						{
+							"key": "email",
+							"value": "mymaildasas@example.com"
+						},
+						{
+							"key": "phone",
+							"value": "1234567890"
+						}
 					]
 				}
 			},
