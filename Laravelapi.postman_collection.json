@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c22a1247-d986-41ae-a0e4-1bc2267c0f9b",
+		"_postman_id": "8bdc2ef3-92fc-4d50-acbd-4a4a9f269b20",
 		"name": "Laravelapi",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26806037"
 	},
 	"item": [
 		{
@@ -13,7 +14,7 @@
 					"script": {
 						"exec": [
 							"pm.sendRequest({\r",
-							"    url: 'http://127.0.0.1:8000/sanctum/csrf-cookie',\r",
+							"    url: '{{base_url}}/sanctum/csrf-cookie',\r",
 							"    method: 'GET'\r",
 							"}, function (error, response, { cookies }) {\r",
 							"    if (!error) {\r",
@@ -31,12 +32,12 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "default"
+						"type": "text"
 					},
 					{
 						"key": "X-XSRF-TOKEN",
 						"value": "{{xsrf-token}}",
-						"type": "default"
+						"type": "text"
 					}
 				],
 				"url": {
@@ -80,12 +81,12 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "default"
+						"type": "text"
 					},
 					{
 						"key": "X-XSRF-TOKEN",
 						"value": "{{xsrf-token}}",
-						"type": "default"
+						"type": "text"
 					}
 				],
 				"url": {
@@ -101,7 +102,7 @@
 			"response": []
 		},
 		{
-			"name": "get User",
+			"name": "Get User",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -119,16 +120,16 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "default"
+						"type": "text"
 					},
 					{
 						"key": "Referer",
 						"value": "{{referer}}",
-						"type": "default"
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user",
+					"raw": "{{base_url}}/api/user",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -140,6 +141,96 @@
 					"path": [
 						"api",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Teachers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "{{referer}}",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/teachers",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store Teacher",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/teachers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"teachers"
 					]
 				}
 			},
@@ -170,12 +261,12 @@
 		{
 			"key": "base_url",
 			"value": "http://127.0.0.1:8000",
-			"type": "default"
+			"type": "text"
 		},
 		{
 			"key": "referer",
 			"value": "127.0.0.1:8000",
-			"type": "default"
+			"type": "text"
 		}
-	]
+	}
 }
