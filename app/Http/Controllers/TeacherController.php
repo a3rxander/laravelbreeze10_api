@@ -15,7 +15,7 @@ class TeacherController extends Controller
     {
         $user = Auth::user();
         $teachers = Teacher::where('organization_id', $user->organization_id)->get();
-        return response()->json(['teachers' => $teachers]);
+        return response()->json($teachers);
     }
     public function store(StoreTeacherRequest $request)
     {
@@ -25,14 +25,14 @@ class TeacherController extends Controller
         $data = $request->validated();
         $data['organization_id'] = $user->organization_id;
         $teacher = Teacher::create($data);
-        return response()->json(['teacher' => $teacher], 201); // 201 Created
+        return response()->json($teacher, 201); // 201 Created
     }
 
     public function show(Teacher $teacher)
     {
 
         $this->authorize('view', $teacher);
-        return response()->json(['teacher' => $teacher]);
+        return response()->json($teacher);
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
@@ -40,7 +40,7 @@ class TeacherController extends Controller
         $this->authorize('update', $teacher);
         $data = $request->validated();
         $teacher->update($data);
-        return response()->json(['teacher' => $teacher]);
+        return response()->json($teacher);
     }
 
     public function destroy(Teacher $teacher)
